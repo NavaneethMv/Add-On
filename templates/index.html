@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+        {% endblock %}
+
+        <title>Your page title</title>
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Your page content -->
+        {% block content %}
+            <div>
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="/">Donor</a>
+                      <form class="d-flex">
+                        <a class="btn btn-outline-success" href="/add" role="button">add</a>
+                      </form>
+                    </div>
+                  </nav>
+            </div>
+            <div class="main-content-cards">
+                <h1>Donor details</h1>
+                {% for each in data %}
+                    <div class="card card-main">
+                        <div class="card-header">
+                          {{ each.get('date') }}
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title">{{ each.get('type') }}</h5>
+                          <p class="card-text">{{ each.get('name') }}</p>
+                          <p class="font-weight-bold">{{ each.get('address') }}</p>
+                          <a href="/contact/{{ each.get('id') }}/" class="btn btn-primary">contact</a>
+                        </div>
+                      </div>
+                {% endfor %}
+            </div>        
+        {% endblock %}
+
+        {% block scripts %}
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+        {% endblock %}
+    </body>
+</html>

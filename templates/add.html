@@ -1,0 +1,40 @@
+{% from 'bootstrap5/form.html' import render_form %}
+
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+
+        {% block styles %}
+            {{ bootstrap.load_css() }}
+        {% endblock %}
+
+        <title>Your page title</title>
+        {% endblock %}
+    </head>
+    <body>
+        {% block content %}
+            <div>
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Donor</a>
+                    <form class="d-flex">
+                        <a class="btn btn-outline-success" href="/add" role="button">add</a>
+                    </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="form-main">
+                {{ render_form(form) }}
+            </div>
+        {% endblock %}
+
+        {% block scripts %}
+            {{ bootstrap.load_js() }}
+        {% endblock %}
+    </body>
+</html>
